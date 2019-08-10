@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>gStore SPARQL Query</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/view.css" media="all">
+</head>
+<body>
+<div id="form_container">
+    <div class="img-box">
+        <img src="./img/logo.png" alt="gStore" height="80">
+    </div>
+    <div class="form_description">
+        <h2 style="text-align:center;" >gStore SPARQL Query</h2>
+        <h3 style="text-align:right;margin-top:0px;margin-bottom:0px;margin-right:5px;font-weight:lighter;"></h3>
+    </div>
+    <div align="left">
+        <a href="/" style="font-size:16px;color:blue">Click to Return</a>&nbsp;&nbsp;
+        <div id="main_body"></div>
+        <input type="hidden" id="element_1" th:value="${dbName}" name="typeId"/>
+        <div id="footer" style="color:#080808;">
+            <div id="support">
+                Supported by <a href="https://github.com/zerohd4869" style="color:#1435E9">Hu Dou</a></div>
+            <div id="copyright">
+                Copyright &copy; 2019 <a href="http://www.ucas.ac.cn/"
+                                         style="color:#1435E9">University of Chinese Academy of Sciences</a></div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap-3.3.6.min.js"></script>
+<script type="text/javascript" src="./js/result.js"></script>
+<script th:inline="javascript">
+    var res = [[${res}]];
+    var format = [[${format}]];
+    getResults(res, format);
+    $("#html_download").on("click", function () {
+        fileDowload(res, 'html')
+    });
+
+
+</script>
+</html>

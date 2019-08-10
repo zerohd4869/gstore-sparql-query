@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>gStore SPARQL Query</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/view.css" media="all">
+</head>
+<body id="main_body" onload="handleQueryExample()">
+<div id="form_container">
+    <div class="img-box">
+        <img src="./img/logo.png" alt="gStore" height="80">
+    </div>
+    <form action="#" th:action="@{/query}" th:object="${query}" method="post">
+        <div class="form_description">
+            <h2 style="text-align:center;" >gStore SPARQL Query</h2>
+            <h3 style="text-align:right;margin-top:0px;margin-bottom:0px;margin-right:5px;font-weight:lighter;"></h3>
+        </div>
+        <ul>
+            <li id="li_1">
+                <label class="description" for="element_1">Database Name </label>
+                <div>
+                    <input id="element_1" class="element text medium" type="text" th:field="*{databaseName}"
+                           maxlength="255" readonly="readonly">
+                </div>
+            </li>
+            <li id="li_2">
+                <label class="description" for="element_2">Query Examples</label>
+                <div>
+                    <select class="element select medium" th:field="*{querySelect}" id="element_2"
+                            onchange="handleQueryExample()">
+                        <option value="q1" selected="selected">q1</option>
+                        <option value="q2">q2</option>
+                        <option value="q3">q3</option>
+                    </select>
+                </div>
+            </li>
+            <li id="li_3">
+                <label class="description" for="element_3">Query Text </label>
+                <div>
+                    <textarea id="element_3" th:field="*{queryText}" class="element textarea large"></textarea>
+                </div>
+            </li>
+            <li id="li_4">
+                <label class="description" for="element_4">Results Format </label>
+                <div>
+                    <select class="element select medium" id="element_4" th:field="*{resultFormat}">
+
+                        <option value="1" th:selected="ture">HTML</option>
+                        <option value="2">JSON</option>
+                        <option value="3">CSV</option>
+                        <option value="4">TXT</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
+
+        <p style="text-align:center;"><input id="submit" type="submit" value="Run Query"/>&nbsp;&nbsp;
+            <input id="reset" type="button" value="Reset"/></p>
+    </form>
+    <div id="footer" style="color:#080808;">
+        <div id="support">
+            Supported by <a href="https://github.com/zerohd4869" style="color:#1435E9">Hu Dou</a></div>
+        <div id="copyright">
+            Copyright &copy; 2019 <a href="http://www.ucas.ac.cn/"
+                                     style="color:#1435E9">University of Chinese Academy of Sciences</a></div>
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap-3.3.6.min.js"></script>
+<script type="text/javascript" src="./js/query.js"></script>
+<script type="text/javascript" src="./js/result.js"></script>
+<script th:inline="javascript" type="text/javascript">
+    var res = [[${res}]];
+    var format = [[${format}]];
+
+    getResults(res, format);
+    $("#reset").on("click", function () {
+        $("#element_2").val('q1');
+        $("#element_4").val('1');
+        res = '';
+        handleQueryExample();
+    });
+</script>
+</html>
