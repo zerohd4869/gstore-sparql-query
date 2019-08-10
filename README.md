@@ -48,6 +48,6 @@ java -jar gstore-sparql-query-0.1.0.jar
 
 ```
 
-4) 在浏览器中打开 http://localhost:8080/ 即可访问系统, 具体操作及结果请参考系统报告。
+4) 在浏览器中打开 http://localhost:8080/ 即可访问系统。
 
 
